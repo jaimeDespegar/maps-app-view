@@ -1,6 +1,5 @@
 package presentacion.vista;
 
-import core.CustomerClassLoader;
 import views.PanelConfiguration;
 import views.View;
 import javax.swing.*;
@@ -13,10 +12,12 @@ public class MainView implements View {
 	private JTextField textField_1;
 	private JPanel panel;
 	private ViewConfiguration viewConfiguration;
+	private PanelConfiguration panelConfiguration;
 
-	public MainView() {
+	public MainView(PanelConfiguration panelConfig) {
 		super();
 		initialize();
+		this.panelConfiguration = panelConfig;
 	}
 
 	private void initialize() {
@@ -47,9 +48,7 @@ public class MainView implements View {
 
 	@Override
 	public void openViewConfiguration() {
-		CustomerClassLoader loader = new CustomerClassLoader(); // ColorViewPanel CalculatorViewPanel
-		PanelConfiguration panelConfig = loader.loaded("/home/jaimequispe/ungs/pp2/jars", "implementation.view.CalculatorViewPanel");
-		this.viewConfiguration = new ViewConfiguration(this, panelConfig);
+		this.viewConfiguration = new ViewConfiguration(this, this.panelConfiguration);
 	}
 
 	@Override
