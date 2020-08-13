@@ -28,3 +28,4 @@ Sera borrado .idea/
 Sera borrado src/test/
 Sera borrado target/classes/log4j.xml
 Sera borrado target/generated-sources/
+/target/
