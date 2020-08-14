@@ -22,7 +22,7 @@ public class MainView implements View {
 
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
+		frame.setBounds(750, 300, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
@@ -67,10 +67,12 @@ public class MainView implements View {
         btnSettings.setBounds(325, 53, 100, 23);
         panel.add(btnSettings);
 
+
 		textArea = new JTextArea();
-		textArea.setBounds(110, 90, 314, 160);
 		textArea.setColumns(20);
-		panel.add(textArea);
+        JScrollPane scrollableTextArea = new JScrollPane(textArea);
+        scrollableTextArea.setBounds(110, 90, 314, 160);
+        panel.add(scrollableTextArea);
 	}
 
     public JTextField getTextFromX() {
