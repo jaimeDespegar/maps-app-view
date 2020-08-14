@@ -28,7 +28,6 @@ public class Main
 		Controlador controlador = new Controlador(mainView, service);
 		service.getRoad(new Coordinate(11, 22), new Coordinate(33, 44)).forEach(System.out::println);
 		controlador.inicializar();
-
 	}
 
 }

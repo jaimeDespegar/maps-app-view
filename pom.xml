@@ -1,7 +1,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>ar.edu.ungs</groupId>
-	<artifactId>agenda</artifactId>
+	<artifactId>maps-view</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>Maps App</name>
 	<description>Aplicacion desktop</description>
@@ -16,18 +16,11 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <!-- class that has the main method -->
         <mainClass>main.Main</mainClass>
-        <!-- name appended to standard jar name to indicate shaded/executable version -->
         <shadedClassifierName>executable</shadedClassifierName>
     </properties>
 
     <dependencies>
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-log4j12</artifactId>
-            <version>1.7.7</version>
-        </dependency>
         <dependency>
             <groupId>pp2</groupId>
             <artifactId>ungs-maps</artifactId>
