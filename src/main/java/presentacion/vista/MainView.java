@@ -1,37 +1,35 @@
 package presentacion.vista;
 
-import views.PanelConfiguration;
+import views.MyViewComponent;
 import views.View;
 import javax.swing.*;
 
 public class MainView implements View {
 
 	private JFrame frame;
-	private JButton btnSearch, btnSettings;
+	private JButton btnSearch;
 	private JTextField textFromX, textFromY, textToX, textToY;
     private JTextArea textArea;
 	private JPanel panel;
-	private ViewConfiguration viewConfiguration;
-	private PanelConfiguration panelConfiguration;
 
-	public MainView(PanelConfiguration panelConfig) {
+	public MainView(MyViewComponent component) {
 		super();
-		initialize();
-		this.panelConfiguration = panelConfig;
-	}
-
-	private void initialize() {
 		frame = new JFrame();
 		frame.setBounds(750, 300, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
-		
-		panel = new JPanel();
+
+		this.panel = new JPanel();
 		panel.setBounds(0, 0, 434, 262);
 		frame.getContentPane().add(panel);
 		panel.setLayout(null);
+		initialize();
+		component.getComponents(this).forEach(c -> this.panel.add(c));
+	}
 
-        JLabel lblFrom = new JLabel("Arrival");
+	private void initialize() {
+
+        JLabel lblFrom = new JLabel("Departure");
         lblFrom.setBounds(20, 26, 113, 14);
         panel.add(lblFrom);
 
@@ -45,7 +43,7 @@ public class MainView implements View {
 		panel.add(textFromY);
 		textFromY.setColumns(10);
 
-        JLabel lblTo = new JLabel("Departure");
+        JLabel lblTo = new JLabel("Arrival");
         lblTo.setBounds(20, 57, 113, 14);
         panel.add(lblTo);
 
@@ -62,11 +60,6 @@ public class MainView implements View {
 		btnSearch = new JButton("Search");
 		btnSearch.setBounds(230, 53, 89, 23);
 		panel.add(btnSearch);
-
-        btnSettings = new JButton("Settings");
-        btnSettings.setBounds(325, 53, 100, 23);
-        panel.add(btnSettings);
-
 
 		textArea = new JTextArea();
 		textArea.setColumns(20);
@@ -98,20 +91,6 @@ public class MainView implements View {
     public JButton getBtnSearch() {
         return btnSearch;
     }
-
-    public JButton getBtnSettings() {
-        return btnSettings;
-    }
-
-    @Override
-	public void openViewConfiguration() {
-		this.viewConfiguration = new ViewConfiguration(this, this.panelConfiguration);
-	}
-
-	@Override
-	public void closeViewConfiguration() {
-		this.viewConfiguration.dispose();
-	}
 
 	@Override
 	public void show() {
