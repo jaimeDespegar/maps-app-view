@@ -9,13 +9,11 @@ import model.Coordinate;
 import presentacion.vista.MainView;
 import javax.swing.*;
 
-public class Controlador implements ActionListener
-{
+public class Controlador implements ActionListener {
 	private MainView mainView;
 	private Service service;
 
-	public Controlador(MainView mainView, Service service)
-	{
+	public Controlador(MainView mainView, Service service) {
 		this.mainView = mainView;
 		this.mainView.getBtnSearch().addActionListener(this);
 		this.service = service;
@@ -30,26 +28,29 @@ public class Controlador implements ActionListener
 		if(e.getSource() == this.mainView.getBtnSearch())
 		{
 			try {
-				Integer fromX = Integer.valueOf(this.mainView.getTextFromX().getText());
-				Integer fromY = Integer.valueOf(this.mainView.getTextFromY().getText());
-				Integer toX = Integer.valueOf(this.mainView.getTextToX().getText());
-				Integer toY = Integer.valueOf(this.mainView.getTextToY().getText());
-				Coordinate arrival = new Coordinate(fromX, fromY);
-				Coordinate departure = new Coordinate(toX, toY);
+				Coordinate arrival = this.buildCoordinate(this.mainView.getTextFromX(), this.mainView.getTextFromY());
+				Coordinate departure = this.buildCoordinate(this.mainView.getTextToX(), this.mainView.getTextToY());
 				List<Coordinate> road = this.service.getRoad(arrival, departure);
 				if (road.isEmpty()) {
 					this.showMessage("No se encontro un camino para la ruta seleccionada");
 				} else {
-					this.mainView.getTextArea().setText(road.stream().map(c -> c.getX()+" - "+c.getY()+"\n").collect(Collectors.joining()));
+					String roadFormated = road.stream().map(c -> c.getX()+" - "+c.getY()+"\n").collect(Collectors.joining());
+					this.mainView.getTextArea().setText(roadFormated);
 				}
 			} catch (NumberFormatException nfe) {
-				this.showMessage("Las coordenadas ingresadas no son correctas");
+				this.showMessage("Las coordenadas ingresadas no son validas");
 			}
 		}
 	}
 
 	private void showMessage(String message) {
 		JOptionPane.showMessageDialog(null, message);
+	}
+
+	private Coordinate buildCoordinate(JTextField textX, JTextField textY) {
+		Integer coordinateX = Integer.valueOf(textX.getText());
+		Integer coordinateY = Integer.valueOf(textY.getText());
+		return new Coordinate(coordinateX, coordinateY);
 	}
 
 }

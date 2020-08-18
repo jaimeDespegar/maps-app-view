@@ -12,7 +12,7 @@ public class MainView implements View {
     private JTextArea textArea;
 	private JPanel panel;
 
-	public MainView(MyViewComponent component) {
+	public MainView() {
 		super();
 		frame = new JFrame();
 		frame.setBounds(750, 300, 450, 300);
@@ -24,6 +24,10 @@ public class MainView implements View {
 		frame.getContentPane().add(panel);
 		panel.setLayout(null);
 		initialize();
+	}
+
+	public MainView(MyViewComponent component) {
+		this();
 		component.getComponents(this).forEach(c -> this.panel.add(c));
 	}
 

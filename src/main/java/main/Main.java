@@ -17,7 +17,7 @@ public class Main
 	public static void main(String[] args) 
 	{
 		String path = "/home/jaimequispe/ungs/pp2/jars";
-		String classProvider = "implementation.LocationMock"; // LocationCalculatorConnector   ApiLocationMock
+		String classProvider = "implementation.LocationMock"; // LocationGoogleFail	LocationCalculator	LocationMock
 		String classSettings = "implementation.view.LoginComponent"; // ColorComponent 	 LoginComponent
 
 		ClassFactory loaderFactory = new ClassLoaderFactory();
