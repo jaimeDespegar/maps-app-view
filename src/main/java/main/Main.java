@@ -1,11 +1,7 @@
 package main;
 
-import core.ClassFactory;
-import core.ICircuitBreaker;
-import core.Service;
-import factory.CircuitBreakerFactory;
-import factory.ClassLoaderFactory;
-import factory.LocationServiceFactory;
+import core.*;
+import factory.*;
 import model.Location;
 import presentacion.controlador.Controlador;
 import presentacion.vista.MainView;
@@ -25,7 +21,9 @@ public class Main
 		ICircuitBreaker circuitBreaker = new CircuitBreakerFactory().build(connector);
 		Service service = new LocationServiceFactory().build(circuitBreaker);
 		MyViewComponent loginComponent = loaderFactory.build(path, classSettings);
+
 		System.out.println(loginComponent.toString());
+
 		MainView mainView = new MainView(loginComponent);
 		Controlador controlador = new Controlador(mainView, service);
 		controlador.inicializar();
